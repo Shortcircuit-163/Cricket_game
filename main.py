@@ -13,9 +13,7 @@ p1 = PhotoImage(file='quicket.png')
 win.iconphoto(True, p1)
 
 heading = Label(win, text="Quicket", font=('Times New Roman', 50, 'bold'))
-heading.place(relx=0.1,
-              rely=0,
-              anchor='nw')
+heading.grid()
 play_mode = Label(win, text='-Choose Game Mode-', font=('Century Gothic', 30, 'underline'))
 play_mode.place(relx=0.1,
                 rely=0.2,
