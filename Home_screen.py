@@ -29,7 +29,7 @@ win.grid_rowconfigure(4, weight=1)
 
 
 heading = Label(win, text="Quicket", background='light grey', font=('Times New Roman', 50, 'bold'))
-heading.grid(row=0, column=1,)
+heading.grid(row=0, column=1)
 
 quicket_image = Image.open(r'images\home\quicket_bg.png')
 quicket_image_resized = quicket_image.resize((250,250))
