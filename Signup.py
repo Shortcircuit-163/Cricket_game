@@ -6,8 +6,8 @@ import csv
 def signup_window():
     sgnp = tk.Tk()
     sgnp.title("Quicket-Signup")
-    sgnp.geometry('800x800')
-    # sgnp.resizable(False, False)
+    sgnp.geometry('800x600')
+    sgnp.resizable(False, False)
     # sgnp.configure(background='light grey')
     ph1 = tk.PhotoImage(file=r'images\home\quicket.png')
     sgnp.iconphoto(True, ph1)

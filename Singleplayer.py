@@ -15,7 +15,7 @@ def open_singleplayer():
     sp.title("Quicket-Singleplayer")
     sp.geometry('650x800')
     sp.resizable(False, False)
-    sp.configure(background='light grey')
+    # sp.configure(background='light grey')
     p1 = tk.PhotoImage(file=r'images\home\quicket.png')
     sp.iconphoto(True, p1)
     
