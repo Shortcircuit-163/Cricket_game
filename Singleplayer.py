@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter.ttk import *
 from PIL import ImageTk, Image
 import csv
-from Singlelayer_start import start_match_singleplayer as start
+from Singleplayer_start import start_match_singleplayer as start
 
 def open_singleplayer():
     
