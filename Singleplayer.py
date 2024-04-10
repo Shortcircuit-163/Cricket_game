@@ -34,20 +34,26 @@ def open_singleplayer():
 
     def submit():
  
-        name=name_var.get()
+        username=name_var.get()
         password=passw_var.get()
         
-        print("Username input: " + name)
+        print("Username input: " + username)
         print("Password input: " + password)
 
-        with open(r'Data\usernames.csv') as passwords:
+        with open(r'Data\usernames.csv', 'r') as passwords:
             pass_reader = csv.reader(passwords, delimiter=',')
             for row in pass_reader:
-                if row[0] == name:
+                if row[0] == username:
                     if row[1] == password:
                         print("correct password")
                         sp.destroy()
-                        start(name)
+                        path = r'Data\users\data_' + username + '.csv'
+                        with open(path, 'r') as read_name:
+                            name_reader = csv.DictReader(read_name, delimiter=',')
+                            for row in name_reader:
+                                for name in row.values():
+                                    start(name)
+                                    break
                     else:
                         print("wrong password")
                         tk.messagebox.showerror("Incorrect password", "Please try again")
