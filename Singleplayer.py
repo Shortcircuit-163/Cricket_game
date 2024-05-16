@@ -40,20 +40,20 @@ def open_singleplayer():
         print("Username input: " + username)
         print("Password input: " + password)
 
-        with open(r'Data\usernames.csv', 'r') as passwords:
+        with open(r'Data\user_data.csv', 'r') as passwords:
             pass_reader = csv.reader(passwords, delimiter=',')
             for row in pass_reader:
-                if row[0] == username:
-                    if row[1] == password:
+                if row[1] == username:
+                    if row[2] == password:
                         print("correct password")
                         sp.destroy()
-                        path = r'Data\users\data_' + username + '.csv'
-                        with open(path, 'r') as read_name:
-                            name_reader = csv.DictReader(read_name, delimiter=',')
+
+                        with open(r'Data\user_data.csv', 'r') as read_name:
+                            name_reader = csv.reader(read_name, delimiter=',')
                             for row in name_reader:
-                                for name in row.values():
+                                if row[1] == username:
+                                    name = row[0]
                                     start(name)
-                                    break
                     else:
                         print("wrong password")
                         tk.messagebox.showerror("Incorrect password", "Please try again")
@@ -67,14 +67,16 @@ def open_singleplayer():
     name_label = tk.Label(user_pass_frame, text = 'Username:', font=('calibre',20, 'bold'))
     name_label.grid(row=0, column=0)
     
-    names = []
-    with open(r'Data\usernames.csv') as users:
-        user_reader = csv.DictReader(users, delimiter=',')
+    usernames = []
+    with open(r'Data\user_data.csv') as users:
+        user_reader = csv.reader(users, delimiter=',')
         for row in user_reader:
-            for username in row.values():
-                names.append(username)
-                break
-    name_dropdown = Combobox(user_pass_frame, textvariable=name_var, values=names, state="readonly", font=('calibre',19,'bold'))
+            if row[1] == 'username':
+                pass
+            else:
+                username = row[1]
+                usernames.append(username)
+    name_dropdown = Combobox(user_pass_frame, textvariable=name_var, values=usernames, state="readonly", font=('calibre',19,'bold'))
     name_dropdown.grid(row=0, column=1)
     
 

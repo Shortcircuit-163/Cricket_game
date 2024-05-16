@@ -4,6 +4,7 @@ from PIL import ImageTk, Image
 import csv
 
 def signup_window():
+
     sgnp = tk.Tk()
     sgnp.title("Quicket-Signup")
     sgnp.geometry('800x600')
@@ -30,14 +31,13 @@ def signup_window():
         username = username_var.get()
         password = passw_var.get()
 
-        new_player_credentials = [username, password]
 
         def check_username_taken():
-            with open(r'Data\usernames.csv', 'a+') as add_user:
+            with open(r'Data\user_data.csv', 'a+') as add_user:
                 add_user.seek(0)
                 user_reader = csv.reader(add_user, delimiter=',')
                 for row in user_reader:
-                    if row[0] == username:
+                    if row[1] == username:
                         print("Username already taken")
                         tk.messagebox.showerror("Username taken", "Please try again")
                         return True
@@ -45,25 +45,22 @@ def signup_window():
                 return False
         
         if check_username_taken() == False:
-            with open(r'Data\usernames.csv', 'a+', newline='') as add_user:
-                writer = csv.writer(add_user)
-                writer.writerow(new_player_credentials)
 
+            new_player_credentials = [name, username, password, 4, 3, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-            path1 = r'Data\users\data_' + username + '.csv'
-
-            with open(path1, 'w', newline='') as player_data:
-                datawriter = csv.writer(player_data)
-                datawriter.writerow(['Name', 'Batsmen owned', 'Bowlers owned','wicket keepers owned', 'all rounders owned', 'Wickets', 'Runs', 'Economy', 'Innings', 'Batting Average', 'Bowling Average', 'Batting Overs', 'Bowling Overs', 'Total Overs'])
-            with open(path1, 'a', newline='') as append_player_data:
+            with open(r'Data\user_data.csv', 'a', newline='') as append_player_data:
                 datawriter = csv.writer(append_player_data)
-                datawriter.writerow([name, 4, 3, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+                datawriter.writerow(new_player_credentials)
 
-            path2 = r'Data\users\player_data_' + username + '.csv'
-            with open(path2, 'w+', newline='') as players:
+            path = r'Data\users\player_data_' + username + '.csv'
+            with open(path, 'w', newline='') as players:
                 player_data_writer = csv.writer(players)
                 player_data_writer.writerow(['batsmen names', 'bowler names', 'all rounder names', 'wicket keeper names'])
                 # ADD STARTERPACK HERE
+            sgnp.destroy()
+            from Home_screen import home
+            home()
+            
 
     name_entry_label = tk.Label(signup_frame, text = 'Enter your name:', font = ('calibre',20,'bold'))
     name_entry_label.grid(row=0, column=0)
