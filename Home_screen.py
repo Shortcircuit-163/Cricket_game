@@ -42,14 +42,10 @@ def home():
     play_mode = Label(win, text='-Choose Game Mode-', background='light grey', font=('Century Gothic', 30, 'underline'))
     play_mode.grid(row=2, column=1)
 
-    style1_btn_gamemode = Style()
-    style1_btn_gamemode.configure('A.TButton', background='light grey', font=('calibri', 50, 'bold', 'underline'), foreground='red')
     photo1 = tk.PhotoImage(file=r'images\home\singleplayer.png')
     btn1 = Button(win, image=photo1, style='A.TButton', command=exit_and_open_singleplayer)
     btn1.grid(row=3, column=1)
 
-    style2_btn_gamemode = Style()
-    style2_btn_gamemode.configure('B.TButton', background='light grey', font=('calibri', 50, 'bold', 'underline'), foreground='orange')
     photo2 = tk.PhotoImage(file=r'images\home\multiplayer.png')
     btn2 = Button(win, image=photo2, style='B.TButton', command=None)
     btn2.grid(row=4, column=1)

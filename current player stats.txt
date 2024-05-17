@@ -1,0 +1,4 @@
+bat       15          5
+bowl      15 
+wk         1          4
+all                   15

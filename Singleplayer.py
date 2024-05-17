@@ -2,10 +2,11 @@ import tkinter as tk
 from tkinter.ttk import *
 from PIL import ImageTk, Image
 import csv
-from Singleplayer_start import start_match_singleplayer as start
-from Signup import signup_window
 
 def open_singleplayer():
+
+    from Singleplayer_start import start_match_singleplayer as start
+    from Signup import signup_window
     
     def close_and_signup():
         sp.destroy()
@@ -53,7 +54,7 @@ def open_singleplayer():
                             for row in name_reader:
                                 if row[1] == username:
                                     name = row[0]
-                                    start(name)
+                                    start(name, username)
                     else:
                         print("wrong password")
                         tk.messagebox.showerror("Incorrect password", "Please try again")

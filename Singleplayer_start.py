@@ -4,12 +4,7 @@ from PIL import ImageTk, Image
 import csv
 
 
-def start_match_singleplayer(name):
-
-    from Home_screen import home
-    def go_home():
-        sm.destroy()
-        home()
+def start_match_singleplayer(name, username):
 
     sm = tk.Tk()
     sm.title("Quicket-Start Match")
@@ -28,11 +23,14 @@ def start_match_singleplayer(name):
     heading = Label(sm, text=greeting, background='', font=('Times New Roman', 50, 'bold'))
     heading.grid(row=0, column=1)
 
-    style1_btn_gamemode = Style()
-    style1_btn_gamemode.configure('A.TButton', background='', font=('calibri', 50, 'bold', 'underline'), foreground='red')
-    photo1 = tk.PhotoImage(file=r'images\singleplayer_start\home.png')
-    home_btn = Button(sm, image=photo1, style='A.TButton', command=go_home)
-    home_btn.grid(row=0, column=3)
+    def go_home():
+        sm.destroy()
+        from Home_screen import home
+        home()
+
+    photo3 = tk.PhotoImage(file=r'images\singleplayer_start\home1.png')
+    btn3 = tk.Button(sm, image=photo3, command=go_home, borderwidth=0)
+    btn3.grid(row=0, column=0, padx = 0)
 
     player_info = tk.Frame(sm)
     player_info.grid(row=1, column=1, pady = 100)
@@ -118,13 +116,13 @@ def start_match_singleplayer(name):
     economy_value = Label(eco, text=economy, background='light grey', font=('Times New Roman', 30, 'bold'))
     economy_value.grid(row=1, column=0)
 
-    inn = tk.Frame(player_info, highlightbackground="black", highlightthickness=6)
-    inn.config(background="grey")
-    inn.grid(row=1, column=2)
-    innings_label = Label(inn, text='Matches', background='grey', font=('Times New Roman', 20, 'bold'))
-    innings_label.grid(row=0, column=0)
-    innings_value = Label(inn, text=innings, background='grey', font=('Times New Roman', 30, 'bold'))
-    innings_value.grid(row=1, column=0)
+    tot = tk.Frame(player_info, highlightbackground="black", highlightthickness=6)
+    tot.config(background="grey")
+    tot.grid(row=1, column=2)
+    total_overs_label = Label(tot, text='Total Overs', background='grey', font=('Times New Roman', 20, 'bold'))
+    total_overs_label.grid(row=0, column=0)
+    total_overs_value = Label(tot, text=total_overs, background='grey', font=('Times New Roman', 30, 'bold'))
+    total_overs_value.grid(row=1, column=0)
 
     batt = tk.Frame(player_info, highlightbackground="black", highlightthickness=6)
     batt.config(background="light grey")
@@ -142,15 +140,37 @@ def start_match_singleplayer(name):
     bowling_avg_value = Label(bowl, text=bowling_average, background='grey', font=('Times New Roman', 30, 'bold'))
     bowling_avg_value.grid(row=1, column=0)
 
-    tot = tk.Frame(player_info, highlightbackground="black", highlightthickness=6)
-    tot.config(background="grey")
-    tot.grid(row=2, column=2)
-    total_overs_label = Label(tot, text='Total Overs', background='grey', font=('Times New Roman', 20, 'bold'))
-    total_overs_label.grid(row=0, column=0)
-    total_overs_value = Label(tot, text=total_overs, background='grey', font=('Times New Roman', 30, 'bold'))
-    total_overs_value.grid(row=1, column=0)
+    inn = tk.Frame(player_info, highlightbackground="black", highlightthickness=6)
+    inn.config(background="light grey")
+    inn.grid(row=2, column=2)
+    innings_label = Label(inn, text='Matches', background='light grey', font=('Times New Roman', 20, 'bold'))
+    innings_label.grid(row=0, column=0)
+    innings_value = Label(inn, text=innings, background='light grey', font=('Times New Roman', 30, 'bold'))
+    innings_value.grid(row=1, column=0)
+
+    game_start = tk.Frame(sm)
+    game_start.grid(row=2, column=1, pady = 10)
+
+    overs_var=tk.StringVar()
+
+    def open_game():
+        sm.destroy()
+        from Game_window import game
+        overs=overs_var.get()
+        game(username, overs)
+
+    name_label = tk.Label(game_start, text = 'Select number of overs:', font=('calibre',21, 'bold'))
+    name_label.grid(row=0, column=0, padx=20)
+    over_options = [2, 3, 4]
+    over_select = Combobox(game_start, textvariable=overs_var, values=over_options, state="readonly", font=('calibre',21,'bold'))
+    over_select.grid(row=0, column=1, padx=20)
+
+    start_img = tk.PhotoImage(file=r'images\singleplayer_start\start.png')
+    login_button=tk.Button(game_start,image=start_img, command = open_game, borderwidth=0)
+    login_button.grid(row=0, column=2, padx=20)
 
     sm.mainloop()
 
 # Batsmen owned,Bowlers owned,wicket keepers owned,all rounders owned,Wickets,Runs,Economy,Innings,
 # Batting Average,Bowling Average,Batting Overs,Bowling Overs,Total Overs
+#start = start_img.subsample(5, 5)
