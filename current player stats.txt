@@ -1,4 +1,4 @@
-bat       15          5
-bowl      15 
-wk         1          4
-all                   15
+bat       17
+bowl      16 
+wk         6
+all       15
