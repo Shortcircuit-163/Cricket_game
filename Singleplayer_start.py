@@ -5,7 +5,12 @@ import csv
 
 
 def start_match_singleplayer(name):
-    
+
+    from Home_screen import home
+    def go_home():
+        sm.destroy()
+        home()
+
     sm = tk.Tk()
     sm.title("Quicket-Start Match")
     sm.geometry('900x800')
@@ -22,6 +27,12 @@ def start_match_singleplayer(name):
     greeting = "Hello " + name + "!"
     heading = Label(sm, text=greeting, background='', font=('Times New Roman', 50, 'bold'))
     heading.grid(row=0, column=1)
+
+    style1_btn_gamemode = Style()
+    style1_btn_gamemode.configure('A.TButton', background='', font=('calibri', 50, 'bold', 'underline'), foreground='red')
+    photo1 = tk.PhotoImage(file=r'images\singleplayer_start\home.png')
+    home_btn = Button(sm, image=photo1, style='A.TButton', command=go_home)
+    home_btn.grid(row=0, column=3)
 
     player_info = tk.Frame(sm)
     player_info.grid(row=1, column=1, pady = 100)
