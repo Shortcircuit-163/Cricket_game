@@ -8,7 +8,7 @@ def start_match_singleplayer(name, username):
 
     sm = tk.Tk()
     sm.title("Quicket-Start Match")
-    sm.geometry('900x800')
+    sm.geometry('950x650')
     # sm.resizable(False, False)
     # sm.configure(background='light grey')
     p1 = tk.PhotoImage(file=r'images\home\quicket.png')
@@ -33,7 +33,7 @@ def start_match_singleplayer(name, username):
     btn3.grid(row=0, column=0, padx = 0)
 
     player_info = tk.Frame(sm)
-    player_info.grid(row=1, column=1, pady = 100)
+    player_info.grid(row=1, column=1, pady = 50)
 
     def return_playerdata():
         data_path = r'Data\user_data.csv'
@@ -149,7 +149,7 @@ def start_match_singleplayer(name, username):
     innings_value.grid(row=1, column=0)
 
     game_start = tk.Frame(sm)
-    game_start.grid(row=2, column=1, pady = 10)
+    game_start.grid(row=2, column=1)
 
     overs_var=tk.StringVar()
 
@@ -167,7 +167,7 @@ def start_match_singleplayer(name, username):
 
     start_img = tk.PhotoImage(file=r'images\singleplayer_start\start.png')
     login_button=tk.Button(game_start,image=start_img, command = open_game, borderwidth=0)
-    login_button.grid(row=0, column=2, padx=20)
+    login_button.grid(row=0, column=2)
 
     sm.mainloop()
 
