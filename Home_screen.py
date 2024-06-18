@@ -1,15 +1,13 @@
 import tkinter as tk
 from tkinter.ttk import *
 from PIL import ImageTk, Image
-from tkinter import filedialog
-from tkinter import messagebox
-from Singleplayer import open_singleplayer
 
 def home():
 
 
     def exit_and_open_singleplayer():
         win.destroy()
+        from Singleplayer import open_singleplayer
         open_singleplayer()
 
     win = tk.Tk()

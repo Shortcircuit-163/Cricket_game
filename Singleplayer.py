@@ -4,12 +4,10 @@ from PIL import ImageTk, Image
 import csv
 
 def open_singleplayer():
-
-    from Singleplayer_start import start_match_singleplayer as start
-    from Signup import signup_window
     
     def close_and_signup():
         sp.destroy()
+        from Signup import signup_window
         signup_window()
     
     sp = tk.Tk()
@@ -54,6 +52,7 @@ def open_singleplayer():
                             for row in name_reader:
                                 if row[1] == username:
                                     name = row[0]
+                                    from Singleplayer_start import start_match_singleplayer as start
                                     start(name, username)
                     else:
                         print("wrong password")
